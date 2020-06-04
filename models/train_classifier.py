@@ -103,8 +103,11 @@ def build_model():
         ('tfidf_transformer', TfidfTransformer()),
         ('classifier', MultiOutputClassifier(SVC())),
     ])
+    parameters_grid = {'classifier__estimator__C':[1,10,100], 'classifier__estimator__kernel':['linear','rbf']}
+    
+    Cj = GridSearchCV(pipeline,param_grid=parameters_grid)
 
-    return pipeline
+    return Cj
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
@@ -148,6 +151,14 @@ def save_model(model, model_filepath):
 
 
 def main():
+    """
+    Main function
+    
+    1. it extracts data from sql db
+    2. Calls the ML model function
+    3. Model performance
+    4. It saves model into pickle file.
+    """
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))

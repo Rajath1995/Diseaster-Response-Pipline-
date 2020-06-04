@@ -57,12 +57,21 @@ def save_data(df, database_filename):
         database_filename - database file
     """
     
-    engine = create_engine('sqlite:///InsertDatabaseName.db')
+    engine = create_engine('sqlite:///'+ database_filename)
     df.to_sql('merged_dataset', engine, index=False,if_exists='replace')     
     pass
 
 
 def main():
+    """
+    Main Data  function
+    
+    
+    1. extracts data from  .csv
+    2. initiates data clearning and pre processing.
+    3. it initiates load data to sql db.
+    """
+    
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
