@@ -1,0 +1,17 @@
+Step1 : ETL script to process data and save the data into database db:-
+
+python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+
+Step2 : Run the Machine Learning script to build the model and save the classifier as pickle file:-
+
+python models/train_classifier.py data/disaster_response_db.db models/classifier.pkl
+
+Step3 : Bring up the web application:-
+
+python run.py
+
+and check the below link for the web applicaiton to be displayed.
+
+http://localhost:3001/
+
+Authors Rajath Nagaraj Masters in Data Science.
